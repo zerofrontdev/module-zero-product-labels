@@ -8,8 +8,10 @@ page, next to Zero_Core's own New and Sale -N%:
   Vegan. Shown first.
 - **Only a few left**: while a simple or virtual product's salable quantity
   is at or below a threshold (MSI's salable quantity for the website's
-  stock, or the stock item's quantity without MSI). Cards are cached for up
-  to an hour, so the badge says "a few", never a count that may be stale.
+  stock, or the stock item's quantity without MSI), looked up for all the
+  products of a list at once (three queries a list, not six a product).
+  Cards are cached for up to an hour, so the badge says "a few", never a
+  count that may be stale.
 - **Free shipping**: while the price alone reaches the Free Shipping
   method's minimum order (Sales > Delivery Methods > Free Shipping, enabled).
 

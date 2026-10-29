@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2026 Roman Pasichnyk
+    SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+
+    Every product list loaded on the storefront tells the low-stock lookup
+    which products it will be asked about, so one batch of queries serves
+    all their badges.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_collection_load_after">
+        <observer name="zero_product_labels_low_stock_batch" instance="Zero\ProductLabels\Observer\RememberCollection"/>
+    </event>
+</config>
