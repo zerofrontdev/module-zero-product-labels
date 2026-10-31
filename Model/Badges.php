@@ -10,6 +10,7 @@ namespace Zero\ProductLabels\Model;
 
 use Magento\Catalog\Model\Product;
 use Zero\Core\Api\ProductBadgeProviderInterface;
+use Zero\Core\Model\Pricing\Amounts;
 use Zero\Core\Model\Pricing\CachedPrices;
 
 /**
@@ -21,7 +22,8 @@ use Zero\Core\Model\Pricing\CachedPrices;
  *   threshold (LowStock). Cards are cached for up to an hour, so it reads as
  *   "a few", never a count that may be out of date;
  * - Free shipping: the final price alone reaches the Free Shipping method's
- *   minimum subtotal.
+ *   minimum subtotal (the price is in display currency, the minimum in
+ *   base: compared in base).
  */
 class Badges implements ProductBadgeProviderInterface
 {
@@ -30,7 +32,8 @@ class Badges implements ProductBadgeProviderInterface
     public function __construct(
         private readonly Config $config,
         private readonly LowStock $lowStock,
-        private readonly CachedPrices $prices
+        private readonly CachedPrices $prices,
+        private readonly Amounts $amounts
     ) {
     }
 
@@ -49,7 +52,7 @@ class Badges implements ProductBadgeProviderInterface
             }
         }
         $freeFrom = $this->config->freeShippingFrom();
-        if ($freeFrom > 0 && $this->prices->get($product)['final'] >= $freeFrom) {
+        if ($freeFrom > 0 && $this->amounts->toBase($this->prices->get($product)['final']) >= $freeFrom) {
             $badges[] = ['code' => 'free-shipping', 'label' => (string) __('Free shipping'), 'sort' => 50];
         }
 

@@ -14,6 +14,8 @@ page, next to Zero_Core's own New and Sale -N%:
   count that may be stale.
 - **Free shipping**: while the price alone reaches the Free Shipping
   method's minimum order (Sales > Delivery Methods > Free Shipping, enabled).
+  The minimum is in base currency, so a price shown in another currency is
+  turned back into base before the comparison.
 
 Each one on or off in Stores > Configuration > Zero > Theme > Product
 Badges, the same group as New and Sale (per store view). The own badge is on
@@ -50,6 +52,8 @@ module is enabled; a child theme restyles them like any other class.
 
 The "Badge" attribute and its values stay (product data), and so do the
 settings; New and Sale keep working from Zero_Core.
+
+What changed in each release: [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
